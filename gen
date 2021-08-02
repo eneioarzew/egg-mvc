@@ -1,0 +1,43 @@
+<?php
+error_reporting(0);
+
+function generateController($argv) {
+    $controller_name = $argv;
+    $class = $controller_name;
+    $class[0] = strtoupper($class[0]);
+
+    if (filesize("controllers/$controller_name".'Controller.php') > 0) {
+        echo "\n\033[33m Gen \033[0m\033[0;31m Error\033[0m >> Controller '$controller_name"."' already exists.\n\n";
+		die;
+    }
+
+    $controller = fopen("controllers/$controller_name.php", 'w');
+    $controller_contents = "<?php
+class $class {
+    function index() { return 'views/$controller_name/index.php'; }
+}
+";
+    fwrite($controller, $controller_contents);
+    mkdir("views/$controller_name");
+    $view = fopen("views/$controller_name/index.php", 'w');
+    $view_contents = "<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <?php include_once 'views/assets/shared/headers.php'; ?>
+    <title>$controller_name Index</title>
+</head>
+<body marginhorizontal>
+    <h1>$controller_name Index</h1>
+</body>
+</html>
+";
+    fwrite($view, $view_contents);
+    fclose($view);
+    echo "\n\033[33m Gen \033[0m\033[1;32m Success\033[0m >> Created $controller_name controller, view, and route.\n\n";
+}
+
+
+// Main Function
+
+if (!isset($argv[1])) echo "\n\033[33m Chalaza\n\033[0m by EneioArzew\n\n";
+generateController($argv[1]);

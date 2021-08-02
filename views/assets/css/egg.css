@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+* { font-family: 'Noto Sans', sans-serif; color: #333; box-sizing: border-box; }
+html, body            { margin: 0; padding: 0; }
+.material-icons.white { color: white; }
+
+/* 'a' */
+a             { text-decoration: none; color: rgb(40, 109, 219); }
+a[link]:hover { text-decoration: underline; }
+/* */
+
+/* 'Button' */
+[button] {
+    width: 200px; display: inline-block; border: none;
+    cursor: pointer; outline: none; font-size: 1em;
+    box-sizing: content-box; text-align: center;
+}
+[button]:hover, [button]:active                                       
+    { background-color: rgb(65, 112, 187); }
+[button][contain=good]:hover, [button][contain=good]:active           
+    { background-color: rgb(86, 160, 86); }
+[button][contain=danger]:hover, [button][contain=danger]:active       
+    { background-color: rgb(189, 65, 65); }
+[button][contain=alert]:hover, [button][contain=alert]:active         
+    { background-color: rgb(219, 145, 60); }
+[button][contain=warning]:hover, [button][contain=warning]:active     
+    { background-color: #f0c954; color: #333; }
+[button][contain=dark]:hover, [button][contain=dark]:active           
+    { background-color: rgb(42, 42, 42) }
+[button][contain=light]:hover, [button][contain=light]:active         
+    { background-color: #dbd9d9; color: #333; }
+[button][contain=white]:hover, [button][contain=white]:active     
+    { background-color: #F0F0F0; color: #333; }
+[button][contain=info]:hover, [button][contain=info]:active           
+    { background-color: #0a8da1; }
+[button][contain=secondary]:hover, [button][contain=secondary]:active 
+    { background-color: rgb(110, 110, 110); }
+[button][contain=none]:hover, [button][contain=none]:active           
+    { background-color: rgba(0, 0, 0, .3); color: white; }
+[button][withicon] {
+    display: flex; flex-wrap: nowrap; gap: 5px;
+    align-items: center; justify-content: center;
+}
+/* */
+
+/* 'Contain' and 'Sign' Styles */
+div[sign] { width: 350px; }
+[contain] {
+    padding: 15px 25px; border-radius: 7px;
+    box-shadow: 0 6px 6px -6px rgba(0, 0, 0, .3);
+    background-color: rgb(77, 133, 224);
+    color: white; text-decoration: none;
+    overflow: hidden; box-sizing: border-box;
+}
+[contain][small]    { padding: 7.5px 15px; }
+[contain][cram]     { width: 100%; padding: 7.5px 15px; }
+[contain=good]      { background-color: rgb(97, 184, 97); color: #FFF; }
+[contain=danger]    { background-color: rgb(218, 72, 72); color: #FFF; }
+[contain=alert]     { background-color: rgb(238, 165, 81); color: #FFF; }
+[contain=warning]   { background-color: #ffda6d; color: #333; }
+[contain=dark]      { background-color:rgb(61, 61, 61); color: #FFF; }
+[contain=light]     { background-color:#F0F0F0; color: #333; }
+[contain=white]   { background-color:white; color: #333; }
+[contain=info]      { background-color: #17a2b8; color: #FFF; }
+[contain=secondary] { background-color: rgb(131, 131, 131); color: #FFF; }
+[contain=none]      { background-color: transparent; color: #333; }
+/* */
+
+/* Flex */
+[flex]                 { display: flex; gap: 10px; flex-wrap: wrap; }
+[flex=auto] > *        { flex: auto; }
+[flex=vertical]        { flex-direction: column; }
+[flex][nowrap]         { flex-wrap: nowrap; }
+[flex][nogap]          { gap: 0; }
+*[flex][align=center] * { align-items: center; justify-content: center; }
+/* */
+
+/* Font */
+[bold]      { font-weight: 700; }
+[italic]    { font-style: italic; }
+[underline] { text-decoration: underline; }
+/* */
+
+/* Form */
+form[form] {}
+form[form] input {}
+/* */
+
+/* Main */
+div[main] {
+    padding: 15px;
+}
+/* */
+
+/* Nav */
+div[nav] { 
+    display: flex; padding: 0 15px; border-radius: 0 0 7px 7px;
+    height: 60px;
+}
+div[nav] > div[items] { display: flex; }
+div[nav] > div[items] > * {
+    border-radius: 0; padding: 15px 10px;
+    align-items: center; display: flex;
+    box-shadow: none;
+}
+div[nav] > div[items] > *:hover { background-color: rgba(0, 0, 0, .3); color: white; }
+div[nav][detached]              { border-radius: 7px; margin-top: 15px; }
+div[nav] > [brand] {
+    align-items: center; margin: 0;
+    padding: 15px 15px 15px 0; box-shadow: none;
+}
+div[nav][nohover] > div[items] > *:hover {
+    background-color: transparent;
+    color: #333;
+    text-decoration: underline;
+}
+/* */
+
+/* Table */
+table[table] {
+    width: 700px; flex-wrap: nowrap; padding: 0;
+    border-spacing: 0; overflow: hidden;
+    padding: 10px;
+}
+table[table] th, table[table] td { padding: 10px; border-radius: 0; }
+/* */
+
+/* Global */
+div                  { box-sizing: border-box; }
+[noshadow]           { box-shadow: none; text-shadow: none; }
+[noshadowtoall] *    { box-shadow: none; text-shadow: none; }
+[nopadding]          { padding: 0; }
+[nopaddingtoall] *   { padding: 0; }
+[nomargin]           { margin: 0; }
+[nomargintoall] *    { margin: 0; }
+[nooutline]          { outline: none; }
+[nooutlinetoall] *   { outline: none; }
+[fullpadding]        { padding: 15px; }
+[fullpaddingtoall] * { padding: 15px; }
+[fullmargin]         { margin: 15px; }
+[fullmarginroall] *  { margin: 15px; }
+[margintop]          { margin-top: 15px; }
+[marginbottom]       { margin-bottom: 15px; }
+[marginleft]         { margin-left: 15px; }
+[marginright]        { margin-right: 15px; }
+[marginvertical]     { margin: 15px 0; }
+[marginhorizontal]   { margin: 0 15px; }
+[fullwidth]          { width: 100%; }
+[fullwidthtoall] *   { width: 100%; }
+[fullheight]         { height: 100%; }
+[fullheighttoall] *  { height: 100%; }
+[autowidth]          { width: auto; }
+[autoheight]         { height: auto; }
+[overflow]           { overflow: auto; }
+[noradius]           { border-radius: 0; }
+[noradiustoall] *    { border-radius: 0; }
+[text=medium]        { font-size: 1.5em; }
+[text=big]           { font-size: 2.5em; }
+[text=bigger]        { font-size: 3em; }
+[text=biggest]       { font-size: 3.5em; }
+[block]              { display: block; }
+[inline]             { display: inline; }
+[inline-block]       { display: inline-block; }
+/* */
+
+@media only screen and (max-width: 430px) {
+    body, [flex=vertical], [contain],
+    div[sign], table[table] { width: 100%; }
+}
