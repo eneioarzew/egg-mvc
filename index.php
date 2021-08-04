@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 include_once 'controllers/Controller.php';
-$ENVIRONMENT = 'LOCAL';
+include_once 'config.php';
 
 function getCurrentURIArray() { return explode('/', $_SERVER['REQUEST_URI']); }
 function getOffsetAmount($URI_offset, $ENVIRONMENT) { return $URI_offset[strtoupper($ENVIRONMENT)]; }
@@ -18,7 +18,7 @@ function routeURI($URI_array, $URI_length) {
     if ($URI_length === 0) header('Location: home/index');
     return $URI_array;
 }
-function getResource($route) { return (new Controller)->getResource($route[0], $route[1], $route[2]); }
+function getResource($route) { return (new Controller)->getResource($route); }
 function showErrorPage() { include_once 'views/404/index.php'; }
 function main($ENVIRONMENT) {
     $URI_array = getCurrentURIArray();
