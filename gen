@@ -1,4 +1,5 @@
 <?php
+include_once('session.php');
 error_reporting(0);
 
 function generate($argv) {
@@ -23,6 +24,7 @@ function generate($argv) {
     if ($argv[1] == 'controller') {
         $file = fopen("controllers/$name.php", 'w');
         $controller_contents = "<?php
+include_once 'session.php';
 class $class {
     function index() { return 'views/$name/index.php'; }
 }
@@ -33,7 +35,8 @@ class $class {
     if ($argv[1] == 'view') {
         mkdir("views/$name");
         $file = fopen("views/$name/index.php", 'w');
-        $view_contents = "<!DOCTYPE html>
+        $view_contents = "<?php include_once 'session.php'; ?>
+<!DOCTYPE html>
 <html lang='en'>
 <head>
     <?php include_once 'views/assets/shared/headers.php'; ?>
@@ -50,6 +53,7 @@ class $class {
     if ($argv[1] == 'model') {
         $file = fopen("models/$name.php", 'w');
         $model_contents = "<?php
+include_once 'session.php';
 class $class {
     // Enter here
 }
