@@ -7,7 +7,11 @@
 /* Setting environment to PRODUCTION lets the framework take everything after the hostname */
 /* e.g. localhost, 127.0.0.1, or www.website.com */
 $ENVIRONMENT = 'LOCAL';
-
 /* Up to the user to implement database connection. */
 /* MySQL connections are compatible. */
-$DATABASE_CONNECTION = '';
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$db_name = '';
+/* Uncomment the line below to use it. */
+// $DATABASE_CONNECTION = new mysqli($host, $username, $password, $db_name);
