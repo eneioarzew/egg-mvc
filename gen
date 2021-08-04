@@ -1,43 +1,69 @@
 <?php
 error_reporting(0);
 
-function generateController($argv) {
-    $controller_name = $argv;
-    $class = $controller_name;
-    $class[0] = strtoupper($class[0]);
-
-    if (filesize("controllers/$controller_name".'Controller.php') > 0) {
-        echo "\n\033[33m Gen \033[0m\033[0;31m Error\033[0m >> Controller '$controller_name"."' already exists.\n\n";
-		die;
+function generate($argv) {
+    $argv[1] = strtolower($argv[1]);
+    $types = ['controller', 'view', 'model'];
+    if (!in_array($argv[1], $types)) {
+        echo "\n\033[33m Gen \033[0m\033[0;31m Error\033[0m >> {$argv[1]} is not a valid type. \n\n";
+        return;
     }
-
-    $controller = fopen("controllers/$controller_name.php", 'w');
-    $controller_contents = "<?php
+    if (!isset($argv[2])) {
+        echo "\n\033[33m Gen \033[0m\033[0;31m Error\033[0m >> Please provide a name for your {$argv[1]}. \n\n";
+        return;
+    }
+    $name = $argv[2];
+    $class = $name;
+    if (filesize("{$argv[1]}s/$name.php") > 0) {
+        echo "\n\033[33m Gen \033[0m\033[0;31m Error\033[0m >> {$argv[1]} '$name' already exists.\n\n";
+		return;
+    }
+    $class[0] = strtoupper($class[0]);
+    /* Controller check */
+    if ($argv[1] == 'controller') {
+        $file = fopen("controllers/$name.php", 'w');
+        $controller_contents = "<?php
 class $class {
-    function index() { return 'views/$controller_name/index.php'; }
+    function index() { return 'views/$name/index.php'; }
 }
 ";
-    fwrite($controller, $controller_contents);
-    mkdir("views/$controller_name");
-    $view = fopen("views/$controller_name/index.php", 'w');
-    $view_contents = "<!DOCTYPE html>
+        fwrite($file, $controller_contents);
+    }
+    /* View check */
+    if ($argv[1] == 'view') {
+        mkdir("views/$name");
+        $file = fopen("views/$name/index.php", 'w');
+        $view_contents = "<!DOCTYPE html>
 <html lang='en'>
 <head>
     <?php include_once 'views/assets/shared/headers.php'; ?>
-    <title>$controller_name Index</title>
+    <title>$name Index</title>
 </head>
 <body marginhorizontal>
-    <h1>$controller_name Index</h1>
+    <h1>$name Index</h1>
 </body>
 </html>
 ";
-    fwrite($view, $view_contents);
-    fclose($view);
-    echo "\n\033[33m Gen \033[0m\033[1;32m Success\033[0m >> Created $controller_name controller, view, and route.\n\n";
+        fwrite($file, $view_contents);
+    }
+    /* Model check */
+    if ($argv[1] == 'model') {
+        $file = fopen("models/$name.php", 'w');
+        $model_contents = "<?php
+class $class {
+    // Enter here
+}
+";
+        fwrite($file, $model_contents);
+    }
+    fclose($file);
+    echo "\n\033[33m Gen \033[0m\033[1;32m Success\033[0m >> Successfully generated '{$argv[2]}' {$argv[1]}.\n\n";
 }
 
-
 // Main Function
+function main($argv) {
+    if (!isset($argv[1])) { echo "\n\033[33m Chalaza\n\033[0m by EneioArzew\n\n"; return; }
+    generate($argv);
+}
 
-if (!isset($argv[1])) echo "\n\033[33m Chalaza\n\033[0m by EneioArzew\n\n";
-generateController($argv[1]);
+main($argv);
