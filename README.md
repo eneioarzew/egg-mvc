@@ -17,7 +17,3 @@ _A lightweight PHP framework for quick project creation._
 # Quick Instructions
 **To use Gen, just type in the following command:**
 _php gen [model|view|controller] [name]_
-
-# Overview of dataflow within the framework
-index.php <-(View path/Data/Response)-> Controller <-(View path)-> Specific Controller
-                                            ^-(Data/Response)-> Model
