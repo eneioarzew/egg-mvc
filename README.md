@@ -9,10 +9,11 @@ _A lightweight PHP framework for quick project creation._
 - Replaced chalaza with gen for generating new controllers
 
 # Installation
+**Composer**
+* Not yet available on composer.
 **Alternatives**
 * Check releases on the Github page and select a version to download.
 
 # Quick Instructions
 **To use Gen, just type in the following command:**
-_php gen controller [controller_name]_
-(Just make sure to replace [controller_name] with the actual controller name.
+_php gen [model|view|controller] [name]_
