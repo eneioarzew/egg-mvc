@@ -16,9 +16,10 @@ function getURILength($URI_array) {
 }
 function routeURI($URI_array, $URI_length) {
     if ($URI_length === 0) header('Location: home/index');
+    if ($URI_length === 1) header("Location: {$URI_array[0]}/index");
     return $URI_array;
 }
-function getResource($route) { return (new Controller)->getResource($route); }
+function getResource($route, $POST_BODY) { return (new Controller)->getResource($route, $POST_BODY); }
 function showErrorPage() { include_once 'views/404/index.php'; }
 function main($ENVIRONMENT) {
     $URI_array = getCurrentURIArray();
@@ -26,9 +27,10 @@ function main($ENVIRONMENT) {
     $URI_array = offsetURI($offset_amount, $URI_array);
     $URI_length = getURILength($URI_array);
     $route = routeURI($URI_array, $URI_length);
-    $resource = getResource($route);
-    if (isset($resource['type'])) var_dump($resource);
-    if (!empty($resource)) include_once $resource; else showErrorPage();
+    $POST_BODY = file_get_contents("php://input");
+    $resource = getResource($route, $POST_BODY);
+    if (is_array($resource)) echo json_encode($resource);
+    if (file_exists($resource)) include_once $resource; else showErrorPage();
 }
 
 main($ENVIRONMENT);
