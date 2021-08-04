@@ -14,5 +14,5 @@ _A lightweight PHP framework for quick project creation._
 
 # Quick Instructions
 **To use Gen, just type in the following command:**
-_php gen [controller_name]_
+_php gen controller [controller_name]_
 (Just make sure to replace [controller_name] with the actual controller name.
