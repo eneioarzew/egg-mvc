@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 include_once 'controllers/Controller.php';
 include_once 'config.php';
 
@@ -29,8 +28,9 @@ function main($ENVIRONMENT) {
     $route = routeURI($URI_array, $URI_length);
     $POST_BODY = file_get_contents("php://input");
     $resource = getResource($route, $POST_BODY);
-    if (is_array($resource)) echo json_encode($resource);
-    if (file_exists($resource)) include_once $resource; else showErrorPage();
+    if (is_array($resource)) { echo json_encode($resource); die; }
+    if (file_exists($resource)) { include_once $resource; die; }
+    showErrorPage();
 }
 
 main($ENVIRONMENT);
