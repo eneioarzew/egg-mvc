@@ -1,0 +1,6 @@
+Opening a page/calling 'home.index' view
+    1. 'index.php' takes in 'home/index' URI.
+    2. 'index.php' calls 'getResource' function from 'Controller' class with route 'home/index' and POST body in an array as input.
+    3. 'Controller.php' retrieves 'home' view contents and sends it to a preprocessor to automatically insert external elements into the main file if inserts are found.
+    4. 'Controller.php' sends completed 'home' view to 'index.php'.
+    5. 'index.php' displays content onto screen.
